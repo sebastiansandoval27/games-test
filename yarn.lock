@@ -73,11 +73,6 @@
   resolved "https://registry.yarnpkg.com/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
-"@status/codes@^1.6.2":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@status/codes/-/codes-1.6.2.tgz#a2ddc14f69b1437f46f2fc3f8d7327209837ca7e"
-  integrity sha512-0UevXlMxX5W3q7PXo7PvNXaDUaZOBnmlZX4ms1OEkDBioQnR1iILHsFq5qPJbqFuTPbODXuOcuwYAh/b+477fA==
-
 "@tsconfig/node10@^1.0.7":
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@tsconfig/node10/-/node10-1.0.9.tgz#df4907fc07a886922637b15e02d4cebc4c0021b2"
@@ -746,11 +741,6 @@ picomatch@^2.0.4, picomatch@^2.2.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
-
-prisma-error-enum@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/prisma-error-enum/-/prisma-error-enum-0.1.3.tgz#8d5820a83698fbaf4df5e13528b7d54941dc81c6"
-  integrity sha512-Ybu1gnxsj4IMCdGjOqdQ7Jaf9XnDzrnnVK+LBOCQBG9OCUuBxUikgwUzBeJX3oKvZ0ni//lHqsTga0Qvh3ZfCQ==
 
 prisma@^5.5.0:
   version "5.5.0"
