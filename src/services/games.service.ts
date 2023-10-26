@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client'
 import prisma from '../database/prisma'
-import { GamesModel } from '../models/games.model'
+import { GameType, GamesModel } from '../models/games.model'
 
 export const createGame = async (
   input: Prisma.GamesCreateInput
@@ -34,6 +34,22 @@ export type GameSearchType =
   | 'away'
   | 'date'
   | 'gameType'
+
+export const getGameByType = async (value: string): Promise<GamesModel[]> => {
+  const value_parsed =
+    value === 'regular_season' ? GameType.REGULAR_SEASON : GameType.PLAYOFF
+
+  return (await prisma.games.findMany({
+    where: {
+      gameType: {
+        in: [value_parsed],
+      },
+    },
+    orderBy: {
+      date: 'asc',
+    },
+  })) as GamesModel[]
+}
 
 export const getGameByProperty = async (
   type: GameSearchType,

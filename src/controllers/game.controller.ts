@@ -7,9 +7,10 @@ import {
   deleteGame,
   GameSearchType,
   getGameByProperty,
+  getGameByType,
 } from '../services/games.service'
 import { validationMiddleware } from '../common/exceptions'
-import { gamesSchema } from '../models/games.model'
+import { GameType, gamesSchema } from '../models/games.model'
 
 const router = Router()
 
@@ -118,6 +119,25 @@ router.get('/games/filter/types', async (req, res, next) => {
       req.query.type as GameSearchType,
       req.query.value as string
     )
+
+    res.json({ games })
+  } catch (error) {
+    console.log(error)
+
+    next(error)
+  }
+})
+
+/*
+ * Filter Games by gameType
+ * @route {GET} /games/filter/gametyoe/:value
+ * @param {string} value - gameType value
+ * @returns {object} 200 - An array of games
+ */
+
+router.get('/games/filter/gametype/:value', async (req, res, next) => {
+  try {
+    const games = await getGameByType(req.params.value as GameType)
 
     res.json({ games })
   } catch (error) {
