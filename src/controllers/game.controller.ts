@@ -105,7 +105,7 @@ router.delete('/games/:id', async (req, res, next) => {
 
 /*
  * Filter Games by property
- * @route {GET} /games/filter/:type/:value
+ * @route {GET} /games/filter/types/:type/:value
  * @param {string} name.query - game name
  * @param {string} city.query - game city
  * @param {string} home.query - game home
@@ -113,11 +113,11 @@ router.delete('/games/:id', async (req, res, next) => {
  * @returns {object} 200 - An array of games
  */
 
-router.get('/games/filter/types', async (req, res, next) => {
+router.get('/games/filter/types/:type/:value', async (req, res, next) => {
   try {
     const games = await getGameByProperty(
-      req.query.type as GameSearchType,
-      req.query.value as string
+      req.params.type as GameSearchType,
+      req.params.value as string
     )
 
     res.json({ games })
@@ -128,6 +128,7 @@ router.get('/games/filter/types', async (req, res, next) => {
   }
 })
 
+// http://localhost:8080/api/games/filter/name?value=seatte
 /*
  * Filter Games by gameType
  * @route {GET} /games/filter/gametyoe/:value
