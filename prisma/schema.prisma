@@ -15,7 +15,7 @@ enum GameType {
 model Games {
   id        Int      @id @default(autoincrement())
   name      String
-  date      DateTime
+  date      DateTime @db.Date
   city      String
   home      String
   away      String

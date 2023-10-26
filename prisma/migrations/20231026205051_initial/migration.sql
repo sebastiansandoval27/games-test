@@ -5,7 +5,7 @@ CREATE TYPE "GameType" AS ENUM ('REGULAR_SEASON', 'PLAYOFF');
 CREATE TABLE "Games" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
-    "date" TIMESTAMP(3) NOT NULL,
+    "date" DATE NOT NULL,
     "city" TEXT NOT NULL,
     "home" TEXT NOT NULL,
     "away" TEXT NOT NULL,

@@ -12,7 +12,11 @@ export const createGame = async (
 }
 
 export const getGames = async (): Promise<GamesModel[]> => {
-  return (await prisma.games.findMany()) as GamesModel[]
+  return (await prisma.games.findMany({
+    orderBy: {
+      date: 'asc',
+    },
+  })) as GamesModel[]
 }
 
 export const getGame = async (id: number): Promise<GamesModel> => {
@@ -21,6 +25,47 @@ export const getGame = async (id: number): Promise<GamesModel> => {
       id,
     },
   })) as GamesModel
+}
+
+export type GameSearchType =
+  | 'name'
+  | 'city'
+  | 'home'
+  | 'away'
+  | 'date'
+  | 'gameType'
+
+export const getGameByProperty = async (
+  type: GameSearchType,
+  value: string
+): Promise<GamesModel[]> => {
+  if (!['name', 'city', 'home', 'away', 'date', 'gameType'].includes(type))
+    throw new Error('Invalid search type')
+
+  if (type === 'date')
+    return (await prisma.games.findMany({
+      where: {
+        date: {
+          gte: value,
+          lte: value,
+        },
+      },
+      orderBy: {
+        date: 'asc',
+      },
+    })) as GamesModel[]
+
+  return (await prisma.games.findMany({
+    where: {
+      [type]: {
+        contains: value,
+        mode: 'insensitive',
+      },
+    },
+    orderBy: {
+      date: 'asc',
+    },
+  })) as GamesModel[]
 }
 
 export const updateGame = async (

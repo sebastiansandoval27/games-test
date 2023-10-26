@@ -5,6 +5,8 @@ import {
   createGame,
   updateGame,
   deleteGame,
+  GameSearchType,
+  getGameByProperty,
 } from '../services/games.service'
 import { validationMiddleware } from '../common/exceptions'
 import { gamesSchema } from '../models/games.model'
@@ -96,6 +98,31 @@ router.delete('/games/:id', async (req, res, next) => {
     const games = await deleteGame(id)
     res.json({ games })
   } catch (error) {
+    next(error)
+  }
+})
+
+/*
+ * Filter Games by property
+ * @route {GET} /games/filter/:type/:value
+ * @param {string} name.query - game name
+ * @param {string} city.query - game city
+ * @param {string} home.query - game home
+ * @param {string} away.query - game away
+ * @returns {object} 200 - An array of games
+ */
+
+router.get('/games/filter/types', async (req, res, next) => {
+  try {
+    const games = await getGameByProperty(
+      req.query.type as GameSearchType,
+      req.query.value as string
+    )
+
+    res.json({ games })
+  } catch (error) {
+    console.log(error)
+
     next(error)
   }
 })
